@@ -115,25 +115,56 @@ const data = [
   Refresh the page to see the new article.
 */
 
-function articleMaker (articles){
+function articleMaker (object){
 
-const article = document.createElement('div');
-const articleLil = document.createElement('h2');
-
-
+const articles = document.createElement('div');
+articles.classList.add('article')
 
 
 
+const articleTitle = document.createElement('h2');
+articles.appendChild(articleTitle);
+
+const articleP0 = document.createElement('p');
+articles.appendChild(articleP0)
+articleP0.classList.add('date')
 
 
+const articleP1 = document.createElement('p');
+articles.appendChild(articleP1)
 
+const articleP2 = document.createElement('p');
+articles.appendChild(articleP2)
+
+const articleP3 = document.createElement('p');
+articles.appendChild(articleP3)
+
+const spanEl = document.createElement('span');
+articles.appendChild(spanEl);
+spanEl.classList.add('expandButton')
+
+spanEl.addEventListener('click', ()=>{
+articles.classList.toggle('article-open')
+});
+
+
+articleTitle.textContent = object.title;
+articleP0.textContent = object.date;
+articleP1.textContent = object.firstParagraph;
+articleP2.textContent = object.secondParagraph;
+articleP3.textContent = object.thirdParagraph;
+spanEl.textContent = '+';
+
+
+return articles;
 
 }
 
+console.log(articleMaker);
 
 
-
-articleMaker.forEach(element => {
-  
+data.forEach(element => {
+ const anyName = document.querySelector('.articles');
+ anyName.appendChild(articleMaker(element));
 
 });
